@@ -16,6 +16,7 @@ class _AdoptMainState extends State<AdoptMain> {
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
   String _uid;
+  bool favourites = false;
 
   @override
   void initState() {
@@ -335,12 +336,19 @@ class _AdoptMainState extends State<AdoptMain> {
                                                 ),
                                                 Padding(
                                                     padding:
-                                                        const EdgeInsets.all(
-                                                            20.0),
-                                                    child: Icon(
-                                                      FontAwesomeIcons.heart,
-                                                      color: Color.fromARGB(
-                                                          255, 0, 136, 145),
+                                                        const EdgeInsets.only(top: 20,left: 20,right: 30,bottom: 25),
+                                                    child: IconButton(
+                                                      icon: Icon(
+                                                        favourites == false? Icons.favorite_border_outlined : Icons.favorite,
+                                                        size: 40,
+                                                        color: Color.fromARGB(
+                                                            255, 0, 136, 145),
+                                                      ),
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          favourites == false? favourites = true:favourites= false;
+                                                        });
+                                                      },
                                                     )),
                                               ],
                                             ),
