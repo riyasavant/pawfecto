@@ -3,12 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:pawfecto/screens/auth/adopt_login.dart';
 import 'package:pawfecto/screens/auth/shelter_login.dart';
 import 'package:pawfecto/components/rounded_button.dart';
+import 'package:pawfecto/screens/shelter/shelter_main_pet.dart';
+import 'package:pawfecto/screens/user/Pawstagram/pawstagram.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Welcome extends StatefulWidget {
   static const String id = 'welcome';
   @override
   _WelcomeState createState() => _WelcomeState();
 }
+const _turl = 'https://drive.google.com/file/d/1zik_v5Avasv83EwWjmyM0qVx6R0_t45D/view?usp=sharing';
+const _purl = 'https://drive.google.com/file/d/1Dx4VBTz9pw6v-oEVDEn-ug4LpHnquQOD/view?usp=sharing';
+
+void _tlaunchURL() async =>
+    await canLaunch(_turl) ? await launch(_turl) : throw 'Could not launch $_turl';
+
+void _plaunchURL() async =>
+    await canLaunch(_purl) ? await launch(_purl) : throw 'Could not launch $_purl';
 
 class _WelcomeState extends State<Welcome> {
   @override
@@ -67,7 +78,7 @@ class _WelcomeState extends State<Welcome> {
                 colour: Color.fromARGB(255, 0, 136, 145),
                 tcolor: Colors.white,
                 onPressed: () {
-                  Navigator.pushNamed(context, ShelterLogin.id);
+                  Navigator.pushNamed(context, ShelterMainPet.id);
                 },
               ),
             ),
@@ -84,9 +95,12 @@ class _WelcomeState extends State<Welcome> {
                         color: Color.fromARGB(255, 0, 136, 145),
                       ),
                     ),
+                    onTap: (){
+                      _plaunchURL();
+                    },
                   ),
                   SizedBox(
-                    height: 2.0,
+                    height: 4.0,
                   ),
                   GestureDetector(
                     child: Text(
@@ -95,6 +109,9 @@ class _WelcomeState extends State<Welcome> {
                         color: Color.fromARGB(255, 0, 136, 145),
                       ),
                     ),
+                    onTap: (){
+                      _tlaunchURL();
+                    },
                   ),
                 ],
               ),
