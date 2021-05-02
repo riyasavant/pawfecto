@@ -145,6 +145,8 @@ class _AdoptLoginState extends State<AdoptLogin> {
                       onPressed: () async {
                         // set spinner to true
                         setState(() {
+                          // print(email);
+                          // print(password);
                           isLoading = true;
                           isErrorVisible = false;
                         });
@@ -154,7 +156,7 @@ class _AdoptLoginState extends State<AdoptLogin> {
                             final user = await _auth.signInWithEmailAndPassword(
                                 email: email, password: password);
 
-                            if (user != null) {
+                            if (user.user.uid != null) {
                               Navigator.popAndPushNamed(context, AdoptMain.id);
                             }
 

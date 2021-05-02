@@ -145,7 +145,7 @@ class _SRegisterState extends State<SRegister> {
                               ),
                             ),
                           );
-                          if (user != null) {
+                          if (user.user.uid != null) {
                             // save data to cloud firestore
                             _firestore
                                 .collection('shelters')
